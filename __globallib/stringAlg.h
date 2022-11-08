@@ -1,4 +1,4 @@
-std::string algoplus::lcs(std::string a, std::string b){
+std::string algoplus::lcs(const std::string &a, const std::string &b){
     int n = a.size();
     int m = b.size();
     std::vector<std::vector<int>> data(n+1,std::vector<int>(m+1));
@@ -28,7 +28,7 @@ std::string algoplus::lcs(std::string a, std::string b){
     return a.substr(ii-mx,mx);
 }
 
-int algoplus::len_longest_palindrome(std::string s){
+int algoplus::len_longest_palindrome(const std::string &s){
     int n = s.length();
     std::vector<int> d1 (n);
     int l=0, r=-1;
@@ -50,7 +50,7 @@ int algoplus::len_longest_palindrome(std::string s){
     }
     return std::max(2*(*std::max_element(d1.begin(),d1.end()))-1,2*(*std::max_element(d2.begin(),d2.end())));
 }
-std::vector <std::pair <int, int>> algoplus::pair_palindrome_index(std::string s){
+std::vector <std::pair <int, int>> algoplus::pair_palindrome_index(const std::string &s){
     int n = s.length();
     std::vector<int> d1 (n);
     int l=0, r=-1;
@@ -83,7 +83,7 @@ std::vector <std::pair <int, int>> algoplus::pair_palindrome_index(std::string s
     }
     return ans;
 }
-long long algoplus::count_pair_palindrome_index(std::string s){
+long long algoplus::count_pair_palindrome_index(const std::string &s){
     int n = s.length();
     std::vector<int> d1 (n);
     int l=0, r=-1;
@@ -116,7 +116,7 @@ long long algoplus::count_pair_palindrome_index(std::string s){
     }
     return anss;
 }
-std::string algoplus::longest_palindrome(std::string s){
+std::string algoplus::longest_palindrome(const std::string &s){
     int n = s.length();
     std::vector<int> d1 (n);
     int l=0, r=-1;
@@ -152,7 +152,7 @@ std::string algoplus::longest_palindrome(std::string s){
     }
     return ann;
 }
-algoplus::Z_array::Z_array(std::string s){
+algoplus::Z_array::Z_array(const std::string &s){
     init(s);
 }
 algoplus::Z_array::Z_array(){
@@ -161,7 +161,7 @@ algoplus::Z_array::Z_array(){
 size_t algoplus::Z_array::size(){
     return size_it;
 }
-void algoplus::Z_array::init(std::string s){
+void algoplus::Z_array::init(const std::string &s){
     inp = s;
     size_it = s.length();
     int n = (int) s.length();
@@ -185,7 +185,7 @@ void algoplus::Z_array::print(std::string sep ){
     }
     std::cout <<std::endl;
 }
-std::vector <int> algoplus::find_substring(std::string data, std::string pat){
+std::vector <int> algoplus::find_substring(const std::string & data, const std::string & pat){
     std::string zz = pat + "`" + data;
     algoplus::Z_array arr(zz);
     int m = pat.size();
@@ -196,7 +196,7 @@ std::vector <int> algoplus::find_substring(std::string data, std::string pat){
     return ans;
 
 }
-std::vector<size_t> algoplus::Rabin_Karp(std::string s,std::string sub){
+std::vector<size_t> algoplus::Rabin_Karp(const std::string & s,const std::string & sub){
     algoplus::hashstring hs;
     algoplus::hashstring hsub;
     hs.init(s);

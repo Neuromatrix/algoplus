@@ -3,22 +3,22 @@
 #include <unordered_map>
 
 namespace algoplus{
-
+    //STATIC RANGE QUERIES
     template <typename T> class sparse_table{
     private:
         std::vector <std::vector <T>> data;
         size_t size_it = 0;
     public:
         void resize(size_t);
-
-        void init(std::vector <T>);
+        void init(const std::vector <T>&);
         T mins(size_t, size_t);
         void print();
         sparse_table(size_t = 0);
-        sparse_table(std::vector <T>);
-        sparse_table(size_t, std::vector <T>);
+        sparse_table(const std::vector <T>&);
+        sparse_table(size_t, const std::vector <T>&);
 
     };
+
     template <typename T> class prefix_sum{
     private:
         std::vector <T> pre_sum;
@@ -30,7 +30,7 @@ namespace algoplus{
         prefix_sum(const std::vector <T>&);
         prefix_sum();
     };
-
+    //TREES
     class ancestors_tree{
     private:
         int n;
@@ -43,8 +43,6 @@ namespace algoplus{
         void init(const std::vector<std::vector<int>>&);
         int query(int,int);
     };
-
-
 
     class LCA{
     private:
@@ -61,7 +59,7 @@ namespace algoplus{
         int query(int, int);
         LCA(){}
     };
-
+    //STRTNGS
     class Z_array
     {
         private:
@@ -69,13 +67,14 @@ namespace algoplus{
             std::string inp;
             std::vector <int> z_array;
         public:
-            Z_array(std::string);
+            Z_array(const std::string&);
             Z_array();
             size_t size();
-            void init(std::string );
+            void init(const std::string &);
             int operator[](size_t);
             void print(std::string = " ");
     };
+
     class hashstring {
         private:
             std::string data;
@@ -84,7 +83,6 @@ namespace algoplus{
             const unsigned long long mod = 18446744073709551557ULL;
             std::vector <long long> p_pow;
             std::vector <long long> h;
-
         public:
             void init(const std::string&);
             bool compare(size_t,size_t, size_t, size_t);
@@ -92,15 +90,15 @@ namespace algoplus{
             long long prefix_hash(size_t, size_t);
             void printhashs();
             long long poww(size_t);
-
     };
-    std::vector<size_t> Rabin_Karp(std::string s,std::string sub);
-    std::string lcs(std::string, std::string);
-    int len_longest_palindrome(std::string);
-    std::vector <std::pair <int, int>> pair_palindrome_index(std::string);
-    long long count_pair_palindrome_index(std::string);
-    std::string longest_palindrome(std::string);
-    std::vector <int> find_substring(std::string, std::string);
+
+    std::vector<size_t> Rabin_Karp(const std::string&,const std::string&); // with hashes
+    std::string lcs(const std::string&, const std::string&); //longest common substring
+    int len_longest_palindrome(const std::string&); //Manaker
+    std::vector <std::pair <int, int>> pair_palindrome_index(const std::string&); //Manaker
+    long long count_pair_palindrome_index(const std::string&); //Manaker
+    std::string longest_palindrome(const std::string&); //Manaker
+    std::vector <int> find_substring(const std::string&, const std::string&); // with Zarray
 }
 #include "__globallib/trees.h"
 #include "__globallib/range_static_Q.h"
