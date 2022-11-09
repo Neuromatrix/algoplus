@@ -232,12 +232,18 @@ namespace algoplus{
         treap(node *);
         treap(int);
     };
+    // @brief count bin cof (n,k) by modulo
+    long long bin_cof(long long, long long, long long = (1e9+7));
+    // @brief count bin cof (n,k) by modulo
+    long long bin_cof_DP(long long, long long,
+        long long ,std::vector <std::vector <long long>>&);
+    long long catalan_numb(long long, long long);
 }
 #include "__globallib/trees.h"
 #include "__globallib/range_static_Q.h"
 #include "__globallib/stringAlg.h"
 #include "__globallib/additional_structs.h"
-
+#include "__globallib/mathAlg.h"
 
 
 
