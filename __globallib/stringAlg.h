@@ -78,7 +78,7 @@ std::vector <std::pair <int, int>> algoplus::pair_palindrome_index(const std::st
     }
     for (size_t i = 0; i < n; i++){
         for(size_t l = 0; l < d2[i]; l++){
-            ans.push_back({i-l,i+l-1});
+            ans.push_back({i-l-1,i+l});
         }
     }
     return ans;
@@ -153,10 +153,9 @@ std::string algoplus::longest_palindrome(const std::string &s){
     return ann;
 }
 algoplus::Z_array::Z_array(const std::string &s){
-    init(s);
+    algoplus::Z_array::init(s);
 }
 algoplus::Z_array::Z_array(){
-    init(" ");
 }
 size_t algoplus::Z_array::size(){
     return size_it;
@@ -204,7 +203,7 @@ std::vector<size_t> algoplus::Rabin_Karp(const std::string & s,const std::string
     size_t len = sub.size();
     std::vector <size_t> ans;
     for (size_t i = 0;i+len-1 < s.size(); i++){
-        if (hsub.allhash()*hs.poww(i)==hs.prefix_hash(i,len)) ans.push_back(i);//сравниванием хэши
+        if (hsub.allhash()*hs.poww(i)==hs.gethash(i,len)) ans.push_back(i);//сравниванием хэши
     }
     return ans;
 }
@@ -234,7 +233,7 @@ bool algoplus::hashstring::compare(size_t i1,size_t j1, size_t i2, size_t j2){//
 long long algoplus::hashstring::allhash(){
     return *(--h.end());// хэш от всей строки
 }
-long long algoplus::hashstring::prefix_hash(size_t i, size_t len){
+long long algoplus::hashstring::gethash(size_t i, size_t len){
     long long cur_h = h[i+len-1];// хэш от префикса
     if (i)  cur_h -= h[i-1];
     return cur_h;

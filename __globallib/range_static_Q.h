@@ -8,7 +8,7 @@ template <typename T> void algoplus::sparse_table<T>::resize(size_t new_size){
     size_it = new_size;
 }
 template <typename T> void algoplus::sparse_table<T>::init(const std::vector <T> &gh){
-    resize(gh.size());
+    algoplus::sparse_table<T>::resize(gh.size());
     data[0] = gh;
     for (int l = 0; l < std::__lg(size_it); l++){
         for (int i = 0; i + (2 << l) <= size_it; i++){
@@ -30,15 +30,15 @@ template <typename T> void algoplus::sparse_table<T>::print(){
     }
 }
 template <typename T> algoplus::sparse_table<T>::sparse_table(size_t new_size){
-    resize(new_size);
+    algoplus::sparse_table<T>::resize(new_size);
 }
 template <typename T> algoplus::sparse_table<T>::sparse_table(const std::vector <T> &gh){
-    resize(gh.size());
-    init(gh);
+    algoplus::sparse_table<T>::resize(gh.size());
+    algoplus::sparse_table<T>::init(gh);
 }
 template <typename T> algoplus::sparse_table<T>::sparse_table(size_t new_size, const std::vector <T> &gh){
-    resize(new_size);
-    init(gh);
+    algoplus::sparse_table<T>::resize(new_size);
+    algoplus::sparse_table<T>::init(gh);
 }
 
 
@@ -59,7 +59,7 @@ template <typename T> size_t algoplus::prefix_sum<T>:: size(){
     return size_it;
 }
 template <typename T>  algoplus::prefix_sum<T>::prefix_sum(const std::vector <T> &pool){
-    init(pool);
+    algoplus::sparse_table<T>::init(pool);
 }
 template <typename T> algoplus::prefix_sum<T>::prefix_sum(){
     size_it = 0;

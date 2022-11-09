@@ -13,7 +13,7 @@ void algoplus::ancestors_tree::init(const std::vector <std::vector <int>> &graph
     n = gr.size();
     data.resize(n+1);
     data[0].resize(n+1);
-    dfs(root, 0);
+    algoplus::ancestors_tree::dfs(root, 0);
     for (int i = 1; 1<<i <= n ; i++){
         data[i].resize(n+1);
         for (int j = 0; j <= n ; j++)
@@ -24,7 +24,7 @@ inline void algoplus::ancestors_tree::dfs(int cur, int prev){
     data[0][cur] = prev;
     for(const auto &nex :gr[cur]){
         if(nex==prev) continue;
-        dfs(nex,cur);
+        algoplus::ancestors_tree::dfs(nex,cur);
     }
 }
 
@@ -33,7 +33,7 @@ inline void algoplus::LCA::dfs(int cur, int prev, int d){
     order.push_back(cur);
     for(const auto & nex: gr[cur]){
         if(nex==prev) continue;
-        dfs(nex,cur,d+1);
+        algoplus::LCA::dfs(nex,cur,d+1);
         order.push_back(cur);
         depth.push_back(d);
     }
@@ -41,7 +41,7 @@ inline void algoplus::LCA::dfs(int cur, int prev, int d){
 void algoplus::LCA::init(const std::vector <std::vector <int>> & graph){//!натуральная нумерация
     n = graph.size();
     gr = graph;
-    dfs(1,0);
+    algoplus::LCA::dfs(1,0);
     for (size_t i = 0; i < order.size(); i++){
         index[order[i]] = i;
     }
