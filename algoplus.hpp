@@ -217,10 +217,17 @@ namespace algoplus{
 
         void merge (node* &, node*, node*);
     public:
+        // @brief split treap by value  on two treap
         void split(int, treap, treap);
+        // @brief insert value in tree
         void insert(int);
+        // @brief merge two treps to this
+        // @bug maybe wrong desription
         void merge(treap, treap);
+        // @brief erase value from treap
         void erase (int);
+        // @brief merge this treap and another
+        // @return new treap
         treap unite(treap);
         treap(node *);
         treap(int);
