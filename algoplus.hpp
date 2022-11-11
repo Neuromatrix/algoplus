@@ -238,6 +238,28 @@ namespace algoplus{
     long long bin_cof_DP(long long, long long,
         long long ,std::vector <std::vector <long long>>&);
     long long catalan_numb(long long, long long);
+
+    class equation
+    {
+    private:
+        int a = 0, b = 0, c = 0;
+        bool fall = true;
+        inline std::tuple <int, int, int> gcd(int, int);
+    public:
+
+        // @brief init with a,b,c
+        void init(int, int, int);
+        // @return can we solve this equation
+        bool solvable();
+        // @brief solve without parametr(k)
+        // @return pair of defualt roots (x,y)
+        std::pair <int, int> solve();
+        // @brief solve this eqution with k parametr
+        std::pair <int, int> solve(int);
+        // @brief return
+        equation();
+        equation(int, int, int);
+    };
 }
 #include "__globallib/trees.h"
 #include "__globallib/range_static_Q.h"
