@@ -1,7 +1,7 @@
 
 #include <vector>
 #include <unordered_map>
-
+#include <map>
 namespace algoplus{
     //STATIC RANGE QUERIES
     // @brief structs can find minimum in [l,r) with O(1)
@@ -260,6 +260,52 @@ namespace algoplus{
         equation();
         equation(int, int, int);
     };
+    // @brief calculate power of a number by mod, O(logn)
+    inline long long bpow(long long, long long, long long = (LLONG_MAX));
+    // @brief calculate gcd of a,b
+    // @warning a, b - integer numbers
+    template <typename T> inline T gcd(T, T);
+    // @brief calculate lcm of a,b
+    // @warning a, b - integer numbers
+    template <typename T> T lcm(T, T);
+    // @brief check is prime number with O(sqrt(n))
+    bool isprime(int);
+    // @brief check is prime number with O(log(n)) with ferma test
+    bool fast_prime(long long);
+    namespace{
+        long long mul(long long a, long long b, long long m = LLONG_MAX){
+            if(b==1)
+                return a;
+            if(b%2==0){
+                long long t = mul(a, b/2, m);
+                return (2 * t) % m;
+            }
+            return (mul(a, b-1, m) + a) % m;
+        }
+        //! Ferma`s test
+        long long pows(long long a, long long b, long long m = LLONG_MAX){
+            if(b==0)
+                return 1;
+            if(b%2==0){
+                long long t = pows(a, b/2, m);
+                return mul(t , t, m) % m;
+            }
+            return ( mul(pows(a, b-1, m) , a, m)) % m;
+        }
+        inline long long e_gcd(long long a, long long b){
+            if (b==0) return a;
+            else return e_gcd(b,a%b);
+        }
+    }
+    // @brief O(sqrt(n)logn), Counts the factors of a number and fills the map with them
+    // @return map with m[p_i] = a_i, power - the number of factors included in this number
+    std::map <long long,long long> factorisation_with_map(long long);
+    // @brief O(sqrt(n)), Counts the factors of a number and fills the vector with them
+    // @return vector of P, when count p_i in vector if a_i, a_i - the number of factors included in this number
+    std::vector <long long> factorisation(long long);
+    // @brief O(nloglogn) count prime numbers from 0 to N
+    // @return return vector of numbers, where vec[p]=0, p is prime number
+    std::vector <bool> algoplus::eratostene(int N);
 }
 #include "__globallib/trees.h"
 #include "__globallib/range_static_Q.h"

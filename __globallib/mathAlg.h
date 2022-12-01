@@ -60,3 +60,81 @@ algoplus::equation::equation(){}
 algoplus::equation::equation(int __a, int __b, int __c){
     algoplus::equation::init(__a,__b,__c);
 }
+inline long long algoplus::bpow(long long a, long long pow,long long mod){
+	if (a == 1 || pow == 0) {
+		return 1;
+	} else if (pow == 1) {
+		return a%=mod;
+	} else {
+		long long  part = algoplus::bpow(a, pow >> 1,mod)%mod;
+		if (pow & 1) {
+			return (((part * part)%mod) * a)%mod;
+		} else {
+			return (part * part)%mod;
+		}
+	}
+}
+template <typename T> inline T algoplus::gcd(T a, T b){
+    if (b == 0) return a;
+    return algoplus::gcd(b,a%b);
+}
+template <typename T> T algoplus::lcm(T a, T b){
+    return a*b/algoplus::gcd(a,b);
+}
+bool algoplus::isprime(int N){
+    if (N < 2) return false;
+    for(int i = 2; i*i <=N; i++){
+        if (N%i==0) return false;
+    }
+    return true;
+}
+
+bool algoplus::fast_prime(long long x){
+    if(x == 2)
+		return true;
+	srand(time(NULL));
+	for(int i=0;i<100;i++){
+		long long a = (rand() % (x - 2)) + 2;
+		if (e_gcd(a, x) != 1)
+			return false;
+		if( pows(a, x-1, x) != 1)
+			return false;
+	}
+	return true;
+}
+// O(sqrt(n)), быстрее, но подсчет степени медленнее
+std::vector <long long> algoplus::factorisation(long long N){
+    std::vector <long long> f;
+    for(long long i = 2; i * i <= N; i++){
+        while(N%i == 0){
+            f.push_back(N);
+            N/=i;
+        }
+    }
+    if (N > 1) f.push_back(N);
+    return f;
+}
+//O(sqrt(nlogn))
+// чуть медленнее, но если нужна быстро узанть  /alpha_i(степень делителя), то это лучше
+std::map <long long,long long> algoplus::factorisation_with_map(long long N){
+    std::map <long long,long long> f;
+    for(long long i = 2; i * i <= N; i++){
+        while(N%i == 0){
+            f[i]++;
+            N/=i;
+        }
+    }
+    if (N > 1) f[N]++;
+    return f;
+}
+std::vector <bool> algoplus::eratostene(int N){
+    std::vector <bool> sieve;
+    sieve.assign(N<<1,0);
+    for (int i = 2; i <= N; i++){
+        if (sieve[i]) continue;
+        for (int j = i<<1; j <= N; j+=i){
+            sieve[j] = true;
+        }
+    }
+    return sieve;
+}
