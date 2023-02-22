@@ -305,7 +305,7 @@ namespace algoplus{
     std::vector <long long> factorisation(long long);
     // @brief O(nloglogn) count prime numbers from 0 to N
     // @return return vector of numbers, where vec[p]=0, p is prime number
-    std::vector <bool> algoplus::eratostene(int N);
+    std::vector <bool> eratostene(int);
 }
 #include "__globallib/trees.h"
 #include "__globallib/range_static_Q.h"
